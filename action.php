@@ -149,6 +149,11 @@ foreach ($packageNodes as $packageNode) {
             // Packages. Keep this safeguard until the bug has been resolved.
             continue;
         }
+        
+        if ('latest' == $packageVersion) {
+            // Do not delete packages tagged as 'latest"
+            continue;
+        }    
 
         if (!$removeSemver && isSemanticVersion($packageVersion)) {
             debug(sprintf('[%s] [%s] Semantic versions will not be removed unless remove-semver is set to true', $repoNameWithOwner, $packageNameWithVersion));
